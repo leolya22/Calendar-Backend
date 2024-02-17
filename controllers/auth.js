@@ -1,19 +1,28 @@
-const express = require( 'express' );
+const { response } = require( 'express' );
 
 
-const crearUsuario = ( req, res ) => {
-    res.json({
+const crearUsuario = ( req, res = response ) => {
+    const { name, email, password } = req.body;
+
+    res.status( 201 ).json({
         ok: true,
-        message: 'registro'
+        message: 'registro',
+        name,
+        email,
+        password
     })
 }
-const loginUsuario = ( req, res ) => {
+const loginUsuario = ( req, res = response ) => {
+    const { email, password } = req.body;
+
     res.json({
         ok: true,
-        message: 'login'
+        message: 'login',
+        email,
+        password
     })
 }
-const revalidarToken = ( req, res ) => {
+const revalidarToken = ( req, res = response ) => {
     res.json({
         ok: true,
         message: 'renew'
