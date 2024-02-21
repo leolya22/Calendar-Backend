@@ -60,14 +60,14 @@ const loginUsuario = async ( req, res = response ) => {
             })
         }
 
-        const jwt = await generarJWT( usuario.id, usuario.name );
+        const token = await generarJWT( usuario.id, usuario.name );
 
         res.json({
             ok: true,
             message: 'Usted se logueo correctamente',
             name: usuario.name,
             uid: usuario.id,
-            jwt,
+            token,
         })
     } catch (error) {
         res.status( 500 ).json({
@@ -78,10 +78,12 @@ const loginUsuario = async ( req, res = response ) => {
 }
 
 
-const revalidarToken = ( req, res = response ) => {
+const revalidarToken = async ( req, res = response ) => {
+    const token = await generarJWT( req.uid, req.name );
+
     res.json({
         ok: true,
-        message: 'renew'
+        token
     })
 }
 
