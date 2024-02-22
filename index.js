@@ -4,6 +4,7 @@ require( 'dotenv' ).config();
 
 const router = require( './routes/auth' );
 const { dbConnection } = require('./database/config');
+const calendarRouter = require('./routes/events');
 
 
 const port = process.env.PORT;
@@ -14,6 +15,7 @@ app.use( cors() );
 app.use( express.static( 'public' ) );
 app.use( express.json() );
 app.use( '/api/auth', router );
+app.use( '/api/calendar', calendarRouter );
 
 app.listen( port, () => {
     console.log( `Servidor corriendo en el puerto ${ port }` );
