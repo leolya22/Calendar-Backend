@@ -86,10 +86,10 @@ const eliminarEvento = async ( req, res = response ) => {
             })
         }
 
-        const eventoBorrado = await Evento.findByIdAndD( eventoId, nuevoEvento, { new: true } );
+        const eventoBorrado = await Evento.findByIdAndDelete( eventoId );
         return res.json({
             ok: false,
-            eventoActualizado
+            eventoBorrado
         })
 
     } catch ( error ) {
