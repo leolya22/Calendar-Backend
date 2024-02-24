@@ -8,7 +8,6 @@ const isDate = ( value, { req, location, path } ) => {
     }
 
     const fecha = moment( value );
-    console.log(fecha.isValid());
     return fecha.isValid();
 }
 

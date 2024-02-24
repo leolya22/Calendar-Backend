@@ -22,7 +22,15 @@ calendarRouter.post(
     ],
     crearEvento
 );
-calendarRouter.put( '/:id', actualizarEvento );
+calendarRouter.put( 
+    '/:id',
+    [
+        check( 'title', 'El titulo es obligatorio' ).not().isEmpty(),
+        check( 'start', 'Fecha de inicio es obligatoria' ).custom( isDate ),
+        check( 'end', 'Fecha de finalizacion es obligatoria' ).custom( isDate ),
+        validarCampos
+    ], 
+    actualizarEvento );
 calendarRouter.delete( '/:id', eliminarEvento );
 
 module.exports = calendarRouter;
